@@ -2,11 +2,11 @@
 """
 `mapadt` implementation
 
-@author:
+@author: Aidan Brook
 """
 
 
-from typing import Any, List, Tuple
+from typing import Any, List, Sized, Tuple
 
 
 class HashMap:
@@ -29,7 +29,12 @@ class HashMap:
         @param key: key of the item in the collection
         @param value: new value to be added to (updated in) the collection
         """
-        raise NotImplementedError
+        if key not in List:
+            self.put(key, value)
+        if key in List:
+            self
+        if self._size <= len(list):
+            raise MemoryError ("a suitable position cannot be found")
 
     def put(self, key: int, value: Any) -> None:
         """
@@ -38,7 +43,8 @@ class HashMap:
         @param key: key of the item in the collection
         @param value: new value to be added to (updated in) the collection
         """
-        raise NotImplementedError
+        if hash(key) 
+        
 
     def __getitem__(self, key: int) -> Any:
         """
@@ -46,7 +52,12 @@ class HashMap:
 
         @param key: key of the new item in the collection
         """
-        raise NotImplementedError
+        if key in List:
+            return self.get(key)
+        if key not in List:
+            return ("None")
+
+        
 
     def get(self, key: int) -> Any:
         """
@@ -54,7 +65,7 @@ class HashMap:
 
         @param key: key of the new item in the collection
         """
-        raise NotImplementedError
+        return self.
 
     def __len__(self) -> int:
         """
@@ -89,7 +100,7 @@ class HashMap:
         Simple remainder
         @param key: key of an element
         """
-        raise NotImplementedError
+        return key % self._size
 
     def _rehash(self, old_hash: int, step: int = 1) -> int:
         """
@@ -100,7 +111,7 @@ class HashMap:
         @param step: step (1 by default)
         @return new hash
         """
-        raise NotImplementedError
+        return (old_hash + step) % self._size
 
     def keys(self) -> List[int]:
         """
@@ -108,7 +119,7 @@ class HashMap:
 
         @return all keys
         """
-        raise NotImplementedError
+        return List
 
     def values(self) -> List[Any]:
         """

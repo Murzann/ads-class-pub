@@ -2,12 +2,13 @@
 """
 `morse` implementation
 
-@authors: Roman Yasinovskyy
+@authors: Aidan brook
 @version: 2021.4
 """
 
 from typing import Union
-from pythonds3.trees import BinaryTree
+from pythonds3.trees import BinaryTree 
+
 
 
 class Coder:
@@ -28,7 +29,23 @@ class Coder:
         @param code_str: morse code sequence
         @param letter: letter corresponding to the `code_str`
         """
-        raise NotImplementedError
+
+        currentPoint = self.morse_tree
+
+        for i in code_str:
+            if i == '.':
+                if currentPoint.get_child_left() is None:
+                    currentPoint.set_child_left(BinaryTree(""))
+                currentPoint = currentPoint.get_child_left()
+            if i == '-':
+                if currentPoint.get_child_right() is None:
+                    currentPoint.set_child_right(BinaryTree(""))            
+                currentPoint = currentPoint.get_child_right()
+
+        currentPoint.set_root_val(letter)
+        
+            
+        
 
     def follow_and_retrieve(self, code_str: str) -> str:
         """
@@ -38,7 +55,20 @@ class Coder:
         @return letter corresponding to the `code_str`
         @raises ValueError if the code is not found
         """
-        raise NotImplementedError
+
+        currentPoint = self.morse_tree
+
+        for i in code_str:
+            if i == '.':
+                if currentPoint.get_child_left() is None:
+                    raise ValueError("No Value")
+                currentPoint = currentPoint.get_child_left()
+            if i == '-':
+                if currentPoint.get_child_right() is None:
+                    raise ValueError("None")           
+                currentPoint = currentPoint.get_child_right()
+
+        currentPoint.get_root_val()
 
     def find_path(self, tree: BinaryTree, letter: str, path: str) -> Union[bool, str]:
         """
@@ -50,7 +80,7 @@ class Coder:
         @param path: path to the letter
         @return path to the letter
         """
-        raise NotImplementedError
+        
 
     def encode(self, msg: str) -> str:
         """
@@ -59,7 +89,7 @@ class Coder:
         @param msg: text to encode
         @return Morse code representation of the the message
         """
-        raise NotImplementedError
+        
 
     def decode(self, code: str) -> str:
         """
@@ -68,4 +98,4 @@ class Coder:
         @param code: Morse code sequence to decode
         @return text corresponding to the code
         """
-        raise NotImplementedError
+        
